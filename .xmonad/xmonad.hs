@@ -10,10 +10,9 @@ main = xmonad conf
     keys' = [ ((mod4Mask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Default\"")
             , ((mod4Mask .|. shiftMask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Profile 1\"") ]
           -- screen 0 keys 1-4
-          ++ [ ((m .|. modMask conf, k), Physical.viewScreen (Physical.P 0) >> windows (f i))
-             | (i, k) <- zip (workspaces conf) [xK_1..xK_4]
-             , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask) ] ]
-          -- screen 1 keys 5-9
-          ++ [ ((m .|. modMask conf, k), Physical.viewScreen (Physical.P 1) >> windows (f i))
-             | (i, k) <- zip (drop 4 (workspaces conf)) [xK_5..xK_9]
-             , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask) ] ]
+          ++ concat (zipWith (switchKeys 0) (workspaces conf) [xK_1..xK_4])
+          ++ concat (zipWith (switchKeys 1) (drop 4 (workspaces conf)) [xK_5..xK_9])
+    switchKeys scr i k = [ ((modMask conf, k), goWS)
+                         , ((modMask conf .|. shiftMask, k), windows (W.shift i) >> goWS) ]
+      where
+      goWS = Physical.viewScreen (Physical.P scr) >> windows (W.greedyView i)

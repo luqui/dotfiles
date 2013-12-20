@@ -35,9 +35,9 @@ set modeline
 set modelines=5
 set ruler
 
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
-set tabstop=4
+set tabstop=2
 set smarttab
 
 set virtualedit=block
