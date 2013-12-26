@@ -1,3 +1,7 @@
+source /usr/share/vim/google/google.vim
+let g:ycm_filetype_specific_completion_to_disable = {'cpp': 1, 'c': 1}
+Glug youcompleteme-google
+
 filetype off
 
 set backspace=indent,eol,start

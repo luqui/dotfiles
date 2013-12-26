@@ -15,8 +15,3 @@ compinit
 
 autoload -U colors && colors
 PROMPT="%{%B%}[ %{$fg[red]%}%~%{$reset_color%B%} ]%% %{%b%}"
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
