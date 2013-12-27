@@ -3,15 +3,28 @@ import qualified XMonad.Config.Gnome as Gnome
 import qualified XMonad.Util.EZConfig as EZ
 import qualified XMonad.Actions.PhysicalScreens as Physical
 import qualified XMonad.StackSet as W
+import XMonad.Layout.PerWorkspace (onWorkspaces)
+import XMonad.Layout (Tall(..))
+import XMonad.Layout.Reflect (reflectHoriz, REFLECTY(..))
+import XMonad.Layout.MultiToggle (single, Toggle(..), mkToggle)
+import XMonad.Hooks.ManageDocks (avoidStruts)
 
 main = xmonad conf
     where
-    conf = Gnome.gnomeConfig { modMask = mod4Mask } `EZ.additionalKeys` keys'
+    leftSpaces = take 4 (workspaces conf)
+    rightSpaces = drop 4 (workspaces conf)
+    layoutHook = onWorkspaces leftSpaces (reflectHoriz layout) 
+               $ layout
+    layout = avoidStruts (Tall 1 (3/100) (1/2) ||| Full)
+    conf = Gnome.gnomeConfig { modMask = mod4Mask, layoutHook = layoutHook } `EZ.additionalKeys` keys'
     keys' = [ ((mod4Mask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Default\"")
-            , ((mod4Mask .|. shiftMask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Profile 1\"") ]
+            , ((mod4Mask .|. shiftMask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Profile 1\"")
+            , ((mod4Mask, xK_slash), sendMessage $ Toggle REFLECTY)
+            ]
           -- screen 0 keys 1-4
-          ++ concat (zipWith (switchKeys 0) (workspaces conf) [xK_1..xK_4])
-          ++ concat (zipWith (switchKeys 1) (drop 4 (workspaces conf)) [xK_5..xK_9])
+          ++ concat (zipWith (switchKeys 0) leftSpaces  [xK_1..xK_4])
+          -- screen 1 keys 5-9
+          ++ concat (zipWith (switchKeys 1) rightSpaces [xK_5..xK_9])
     switchKeys scr i k = [ ((modMask conf, k), goWS)
                          , ((modMask conf .|. shiftMask, k), windows (W.shift i) >> goWS) ]
       where
