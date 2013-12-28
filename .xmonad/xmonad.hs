@@ -20,6 +20,7 @@ main = xmonad conf
     keys' = [ ((mod4Mask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Default\"")
             , ((mod4Mask .|. shiftMask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Profile 1\"")
             , ((mod4Mask, xK_slash), sendMessage $ Toggle REFLECTY)
+            , ((0, xK_F12), spawn "gnome-screensaver-command --lock")
             ]
           -- screen 0 keys 1-4
           ++ concat (zipWith (switchKeys 0) leftSpaces  [xK_1..xK_4])
