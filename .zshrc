@@ -15,3 +15,5 @@ compinit
 
 autoload -U colors && colors
 PROMPT="%{%B%}[ %{$fg[red]%}%~%{$reset_color%B%} ]%% %{%b%}"
+
+alias ls='ls --color=auto'
