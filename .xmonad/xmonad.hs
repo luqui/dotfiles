@@ -17,8 +17,8 @@ main = xmonad conf
                $ layout
     layout = avoidStruts (Tall 1 (3/100) (1/2) ||| Full)
     conf = Gnome.gnomeConfig { modMask = mod4Mask, layoutHook = layoutHook } `EZ.additionalKeys` keys'
-    keys' = [ ((mod4Mask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Default\"")
-            , ((mod4Mask .|. shiftMask, xK_backslash), spawn "google-chrome-beta --profile-directory=\"Profile 1\"")
+    keys' = [ ((mod4Mask, xK_backslash), spawn "google-chrome-stable --profile-directory=\"Default\"")
+            , ((mod4Mask .|. shiftMask, xK_backslash), spawn "google-chrome-stable --profile-directory=\"Profile 1\"")
             , ((mod4Mask, xK_slash), sendMessage $ Toggle REFLECTY)
             , ((0, xK_F12), spawn "gnome-screensaver-command --lock")
             ]
