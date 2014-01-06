@@ -1,3 +1,7 @@
+if filereadable("/usr/share/vim/google/google.vim")
+  source /usr/share/vim/google/google.vim
+endif
+
 filetype off
 
 set backspace=indent,eol,start
@@ -35,9 +39,9 @@ set modeline
 set modelines=5
 set ruler
 
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
-set tabstop=4
+set tabstop=2
 set smarttab
 
 set virtualedit=block
