@@ -1,4 +1,5 @@
 # Lines configured by zsh-newuser-install
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -17,3 +18,6 @@ autoload -U colors && colors
 PROMPT="%{%B%}[ %{$fg[red]%}%~%{$reset_color%B%} ]%% %{%b%}"
 
 alias ls='ls --color=auto'
+alias ack='ack-grep'
+
+export PATH=$HOME/devel/depot_tools:$PATH

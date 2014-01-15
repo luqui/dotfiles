@@ -53,8 +53,8 @@ set hidden
 set mouse=a
 
 set viminfo='100
-
 set shellredir=>%s
+set laststatus=2
 
 syntax on
 
