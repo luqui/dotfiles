@@ -1,4 +1,6 @@
-source /usr/share/vim/google/google.vim
+if filereadable("/usr/share/vim/google/google.vim")
+  source /usr/share/vim/google/google.vim
+endif
 
 filetype off
 

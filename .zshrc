@@ -3,6 +3,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+EDITOR=vim
 setopt appendhistory extendedglob nomatch HIST_IGNORE_ALL_DUPS
 unsetopt autocd beep notify
 bindkey -e
