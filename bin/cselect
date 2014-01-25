@@ -2,8 +2,6 @@
 
 use strict;
 use Curses::UI;
-use threads;
-
 
 chomp(my @vals = <>);
 
