@@ -22,5 +22,5 @@ alias ls='ls --color=auto'
 alias ack='ack-grep'
 alias rvim='vim -R'
 
-export PATH=$HOME/devel/depot_tools:$PATH
+export PATH=$HOME/bin:$HOME/devel/depot_tools:$PATH
 
