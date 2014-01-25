@@ -1,0 +1,28 @@
+#!/usr/bin/perl
+
+use strict;
+use Curses::UI;
+use threads;
+
+
+chomp(my @vals = <>);
+
+open my $out, '>&', \*STDOUT;
+open STDIN, '+< /dev/tty';
+open STDOUT, '>&', \*STDIN;
+open STDERR, '>&', \*STDIN;
+
+my $cui = Curses::UI->new(-clear_on_exit => 1);
+
+$cui->set_binding(sub { exit }, 'q');
+
+my $win = $cui->add('win', 'Window');
+my $listbox;
+$listbox = $win->add('list', 'Listbox', 
+  -values => \@vals, 
+  -onchange => sub { 
+    print $out $listbox->get_active_value(), "\n";
+    exit;
+  },
+);
+$cui->mainloop;

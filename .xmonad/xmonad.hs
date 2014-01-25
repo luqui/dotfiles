@@ -24,13 +24,13 @@ main = xmonad conf
       Physical.viewScreen (Physical.P 1)
       layoutSplitScreen 2 (TwoPane 0.85 0.15)
     conf = Gnome.gnomeConfig { 
-      modMask = mod4Mask, 
-      layoutHook = layoutHook,
-      startupHook = startupHook,
-      workspaces = workspaces
-      } `EZ.additionalKeys` keys'
+              modMask = mod4Mask, 
+              layoutHook = layoutHook,
+              startupHook = startupHook,
+              workspaces = workspaces
+            } `EZ.additionalKeys` keys'
     keys' = [ ((mod4Mask .|. shiftMask .|. mod1Mask, xK_Return), spawn "gnome-terminal") -- "override terminal"
-            , ((mod4Mask .|. shiftMask, xK_Return), spawn "google-chrome-stable --app-id=pnhechapfaindjhompbnflcldabbghjo") -- chrome terminal app
+            , ((mod4Mask .|. shiftMask, xK_Return), spawn "google-chrome-stable --profile-directory=\"Default\" --app-id=pnhechapfaindjhompbnflcldabbghjo") -- chrome terminal app
             , ((mod4Mask, xK_backslash), spawn "google-chrome-stable --profile-directory=\"Default\"")
             , ((mod4Mask .|. shiftMask, xK_backslash), spawn "google-chrome-stable --profile-directory=\"Profile 1\"")
             , ((0, xK_F12), spawn "gnome-screensaver-command --lock")

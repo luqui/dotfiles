@@ -20,5 +20,7 @@ PROMPT="%{%B%}[ %{$fg[red]%}%~%{$reset_color%B%} ]%% %{%b%}"
 
 alias ls='ls --color=auto'
 alias ack='ack-grep'
+alias rvim='vim -R'
 
 export PATH=$HOME/devel/depot_tools:$PATH
+
