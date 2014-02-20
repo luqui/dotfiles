@@ -15,14 +15,12 @@ main = xmonad conf
     where
     leftSpaces = map (("left"++).show) [1..4]
     rightSpaces = map (("right"++).show) [1..5]
-    orgSpace = "org"
-    workspaces = leftSpaces ++ rightSpaces ++ [orgSpace]
+    workspaces = leftSpaces ++ rightSpaces
     layoutHook = onWorkspaces leftSpaces (reflectHoriz layout) $ layout
     layout = avoidStruts (Tall 1 (3/100) (1/2) ||| Full)
     startupHook = do
       rescreen
       Physical.viewScreen (Physical.P 1)
-      layoutSplitScreen 2 (TwoPane 0.85 0.15)
     conf = Gnome.gnomeConfig { 
               modMask = mod4Mask, 
               layoutHook = layoutHook,
@@ -38,8 +36,7 @@ main = xmonad conf
           -- screen 0 keys 1-4
           ++ concat (zipWith (switchKeys 0) leftSpaces  [xK_1..xK_4])
           -- screen 1 keys 5-9
-          ++ concat (zipWith (switchKeys 2) rightSpaces [xK_5..xK_9])
-          ++ [ ((modMask conf .|. shiftMask, xK_0), windows (W.shift orgSpace) >> goWS 1 orgSpace) ]
+          ++ concat (zipWith (switchKeys 1) rightSpaces [xK_5..xK_9])
     switchKeys scr i k = [ ((modMask conf, k), goWS scr i)
                          , ((modMask conf .|. shiftMask, k), windows (W.shift i) >> goWS scr i) ]
     goWS scr i = Physical.viewScreen (Physical.P scr) >> windows (W.greedyView i)
