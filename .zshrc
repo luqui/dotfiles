@@ -18,9 +18,14 @@ compinit
 autoload -U colors && colors
 PROMPT="%{%B%}[ %{$fg[red]%}%~%{$reset_color%B%} ]%% %{%b%}"
 
-alias ls='ls --color=auto'
 alias ack='ack-grep'
 alias rvim='vim -R'
 
 export PATH=$HOME/bin:$HOME/.cabal/bin:$HOME/devel/depot_tools:$PATH
 export TOOLS=$HOME/devel/build/scripts/tools
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/lukepalmer/devel/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/lukepalmer/devel/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/lukepalmer/devel/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/lukepalmer/devel/google-cloud-sdk/completion.zsh.inc'; fi
